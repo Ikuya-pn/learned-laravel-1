@@ -9,11 +9,29 @@ use App\Http\Controllers\User\Auth\PasswordController;
 use App\Http\Controllers\User\Auth\PasswordResetLinkController;
 use App\Http\Controllers\User\Auth\RegisteredUserController;
 use App\Http\Controllers\User\Auth\VerifyEmailController;
+use App\Http\Controllers\User\ItemsController;
+use App\Http\Controllers\User\CartController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
     return view('user.dashboard');
 })->middleware(['auth:users', 'verified'])->name('dashboard');
+
+Route::middleware('auth:users')
+    ->group(function(){
+        Route::get('/', [ItemsController::class, 'index'])->name('items.index');
+        Route::get('show/{item}', [ItemsController::class, 'show'])->name('items.show');
+    });
+
+Route::prefix('cart')->middleware('auth:users')
+    ->group(function(){
+        Route::post('add', [CartController::class, 'add'])->name('cart.add');
+        Route::get('/', [CartController::class, 'index'])->name('cart.index');
+        Route::delete('destroy/{item}', [CartController::class, 'destroy'])->name('cart.destroy');
+        Route::get('checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+        Route::get('success', [CartController::class, 'success'])->name('cart.success');
+        Route::get('cancel', [CartController::class, 'cancel'])->name('cart.cancel');
+    });
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])

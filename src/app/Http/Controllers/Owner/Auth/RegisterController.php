@@ -64,7 +64,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return Owner::create([
+        return Owner::create([ 
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
