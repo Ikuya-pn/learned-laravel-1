@@ -6,7 +6,9 @@
 
 3. npm install, npm run dev
 
-4. storage/app/public 内に productsフォルダと shopsフォルダを作成後、それぞれに public/image 内の画像ファイルをコピー・ペースト
+4. php artisan storage:link
+
+5. storage/app/public 内に productsフォルダと shopsフォルダを作成後、それぞれに public/image 内の画像ファイルをコピー・ペースト
 
 決済処理を利用する場合は、stripeから公開鍵と非公開鍵を.envの定数
 STRIPE_PUBLIC_KEY
