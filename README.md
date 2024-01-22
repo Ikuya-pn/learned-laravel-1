@@ -18,3 +18,10 @@ STRIPE_SECRET_KEY
 購入完了メールを利用する場合はmailtrapの必要情報を.envに設定してください。
 
 ※DB接続不可の場合はvolumeの削除と再buildを実施してください。
+
+
+~/admin/login
+~/owner/login
+
+mail:test1@test.com
+pass:password123
