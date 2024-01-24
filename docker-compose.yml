@@ -17,7 +17,7 @@ services:
   db:
     build: ./infra/mysql
     volumes:
-      - db-store:/var/lib/mysql
+      - db-store:/var/log/mysql
   phpmyadmin:
     image: phpmyadmin
     depends_on:
