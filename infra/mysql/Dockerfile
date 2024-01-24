@@ -8,3 +8,6 @@ ENV MYSQL_DATABASE=laravel \
 
 COPY ./my.cnf /etc/my.cnf
 RUN chmod 644 /etc/my.cnf
+
+RUN mkdir /var/log/mysql
+RUN chown mysql:mysql /var/log/mysql
